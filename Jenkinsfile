@@ -5,11 +5,11 @@ node {
         git 'https://github.com/edvin328/spring-petclinic.git'
     
    }
-   stage('Build Maven + Deploy Image') {
+   stage('Creating image using Dockerfile (Maven + OpenJDK) ') {
         docker.build("maven-build", ".")
    }
    
-   stage('Run Maven + Deploy Container') {
+   stage('Run container with PETCLINIC application') {
        
         //Remove maven-build-container if it exisits
         sh " docker rm -f maven-build-container"
