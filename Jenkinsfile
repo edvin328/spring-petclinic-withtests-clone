@@ -6,16 +6,21 @@ node {
     
    }
    stage('Creating image using Dockerfile (Maven + OpenJDK) ') {
+       
+        //Remove old image if it exists
+        sh " docker rmi -f maven-build"
+        
+        //Build image from the Dockerfile
         docker.build("maven-build", ".")
    }
    
    stage('Run container with PETCLINIC application') {
        
-        //Remove maven-build-container if it exisits
+        //Remove maven-build-container if it exists
         sh " docker rm -f maven-build-container"
         
-        //Run maven + deploy image
-        sh "docker run --name maven-build-container -d -p 8081:8080 maven-build"
+        //Deploy image in the container
+        sh "docker run --rm --name maven-build-container -d -p 8081:8080 maven-build"
    }
    
 }
