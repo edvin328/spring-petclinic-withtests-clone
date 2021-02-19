@@ -45,7 +45,7 @@ node {
         sh " docker rm -f deploy-container"
         
         //Deploy image in the container
-        sh "docker run --rm --name deploy-container -d -p 8083:8080 deploy"
+        sh "docker run --name deploy-container -d -p 8083:8080 deploy"
    }
    
 
