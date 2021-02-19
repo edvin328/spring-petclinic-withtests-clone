@@ -4,7 +4,7 @@ node {
         // Get some code from a GitHub repository
         git branch: 'master',
         credentialsId: 'github-ssh-key',
-        url: 'git@github.com:edvin328/spring-petclinic.git'
+        url: 'git@github.com:edvin328/spring-petclinic-withtests.git'
     }
     
     stage('Compile') {
