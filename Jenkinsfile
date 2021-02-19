@@ -2,8 +2,8 @@ node {
 
    stage('Clone Repository') {
         // Get some code from a GitHub repository
-        git branch:'master'
-        credentialsId:'github-ssh-key'
+        git branch:'master',
+        credentialsId:'github-ssh-key',
         url 'git@github.com:edvin328/spring-petclinic.git'
     
    }
