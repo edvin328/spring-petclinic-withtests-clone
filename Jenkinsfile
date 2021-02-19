@@ -2,7 +2,9 @@ node {
 
    stage('Clone Repository') {
         // Get some code from a GitHub repository
-        git 'https://github.com/edvin328/spring-petclinic.git'
+        git branch:'master'
+        credentialsId:'github-ssh-key'
+        url 'git@github.com:edvin328/spring-petclinic.git'
     
    }
    stage('Creating image using Dockerfile (Maven + OpenJDK) ') {
