@@ -1,15 +1,5 @@
 node {
 
-    environment {
-        ORG_NAME = "deors"
-        APP_NAME = "deors-demos-petclinic"
-        APP_VERSION = "1.0-SNAPSHOT"
-        APP_CONTEXT_ROOT = "petclinic"
-        APP_LISTENING_PORT = "8080"
-        TEST_CONTAINER_NAME = "ci-${APP_NAME}-${BUILD_NUMBER}"
-        DOCKER_HUB = credentials("${ORG_NAME}-docker-hub")
-    }
-
     stage('Clone Repository') {
         // Get some code from a GitHub repository
         git branch: 'master',
@@ -58,4 +48,11 @@ node {
         sh "docker run --rm --name deploy-container -d -p 8083:8080 deploy"
    }
    
+    stage('Integration tests') {
+        steps {
+            echo "-=- Execute integration tests -=-"
+            sh "curl --retry 5 --retry-connrefused --connect-timeout 5 --max-time 5 http://http://54.78.194.231:8083/actuator/health"
+            sh "./mvnw failsafe:integration-test failsafe:verify -DargLine=\"-Dtest.selenium.hub.url=http://selenium-hub:4444/wd/hub -Dtest.target.server.url=http://http://54.78.194.231:8083\""
+        }
+   }
 }
