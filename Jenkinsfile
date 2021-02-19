@@ -49,10 +49,9 @@ node {
    }
    
     stage('Integration tests') {
-        steps {
-            echo "-=- Execute integration tests -=-"
-            sh "curl --retry 5 --retry-connrefused --connect-timeout 5 --max-time 5 http://54.78.194.231:8083/actuator/health"
-            sh "./mvnw failsafe:integration-test failsafe:verify -DargLine=\"-Dtest.selenium.hub.url=http://selenium-hub:4444/wd/hub -Dtest.target.server.url=http://http://54.78.194.231:8083\""
-        }
+         echo "-=- Execute integration tests -=-"
+         sh "curl --retry 5 --retry-connrefused --connect-timeout 5 --max-time 5 http://54.78.194.231:8083/actuator/health"
+         sh "./mvnw failsafe:integration-test failsafe:verify -DargLine=\"-Dtest.selenium.hub.url=http://selenium-hub:4444/wd/hub -Dtest.target.server.url=http://http://54.78.194.231:8083\""
+      
    }
 }
