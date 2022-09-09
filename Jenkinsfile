@@ -33,7 +33,8 @@ node {
    stage('Creating image using Dockerfile ') {
        
         //Remove old image if it exists
-        sh " docker rmi -f deploy"
+       sh "whoami" 
+       sh " docker rmi -f deploy"
         
         //Build image from the Dockerfile
         docker.build("deploy", ".")
