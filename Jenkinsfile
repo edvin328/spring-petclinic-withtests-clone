@@ -32,7 +32,6 @@ node {
    
    stage('Creating image using Dockerfile ') {
         //Remove old image if it exists
-       script {
         try {
             sh " docker rmi -f deploy"
         }
@@ -40,7 +39,6 @@ node {
             echo err.getMessage()
             echo "No, such image."
         }
-       }
         //Build image from the Dockerfile
         docker.build("deploy", ".")
    }
