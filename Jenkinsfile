@@ -34,7 +34,7 @@ node {
        
         //Remove old image if it exists
        sh "whoami" 
-       sh "sudo docker rmi -f deploy"
+       sh " docker rmi -f deploy"
         
         //Build image from the Dockerfile
         docker.build("deploy", ".")
@@ -43,10 +43,10 @@ node {
    stage('Run container with PETCLINIC application') {
        
         //Remove maven-build-container if it exists
-        sh "sudo docker rm -f deploy-container"
+        sh " docker rm -f deploy-container"
         
         //Deploy image in the container
-        sh "sudo docker run --name deploy-container -d -p 8083:8080 deploy"
+        sh "docker run --name deploy-container -d -p 8083:8080 deploy"
    }
    
 
