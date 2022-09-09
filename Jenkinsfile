@@ -29,8 +29,7 @@ node {
         sh "./mvnw package -DskipTests"
     }
     
-   
-   stage('Creating image using Dockerfile ') {
+   stage('Removing old Dockerfile ') {
         //Remove old image if it exists
         try {
             sh " docker rmi -f deploy"
@@ -38,7 +37,10 @@ node {
         catch (err) {
             echo err.getMessage()
             echo "No, such image."
-        }
+        }   
+   }
+   
+   stage('Creating image using Dockerfile ') {
         //Build image from the Dockerfile
         docker.build("deploy", ".")
    }
