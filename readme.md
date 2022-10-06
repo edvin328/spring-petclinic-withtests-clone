@@ -267,3 +267,7 @@ Hello
 Hello
 Hello
 Hello
+<<<<<<< HEAD
+=======
+Hello
+>>>>>>> 7792d713b7d29df49be1bde18cc8cbf791ca8473
